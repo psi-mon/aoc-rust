@@ -1,5 +1,6 @@
 use clap::Parser;
-
+mod day1;
+const MAX_DAYS:u8 = 1;
 
 #[derive(Parser,Debug)]
 #[command(author, version, about, long_about = None)]
@@ -10,14 +11,29 @@ struct Args{
 
 fn validate_day(value: &str) -> Result<u8, String>{
     let day = value.parse::<u8>().map_err(|_| "Invalid day")?;
-    if day >= 1 && day <= 24{
+    if day >= 1 && day <= MAX_DAYS{
         Ok(day)
     } else {
-        Err("Day myusaeeff".to_string())
+        let error_msg = format!("Day must be between 1 and {} but was {}", MAX_DAYS, day);
+        Err(error_msg)
     }
 }
 fn main() {
     let args = Args::parse();
 
+    let day = args.day;
+
+    let solution = match day {
+        1 => day1::solve(),
+        _ => Err(format!("Invalid day: {}", day)),
+    };
+
+    match solution {
+        Ok(result) => println!("Solution: {}", result),
+        Err(error) => eprintln!("Error: {}", error),
+    } 
+
+
     println!("Hello, world!{:?}", args);
 }
+
