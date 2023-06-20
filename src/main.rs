@@ -1,6 +1,9 @@
 use clap::Parser;
-mod day1;
+use crate::day1::solution::solve;
+pub mod day1;
+
 const MAX_DAYS:u8 = 1;
+
 
 #[derive(Parser,Debug)]
 #[command(author, version, about, long_about = None)]
@@ -24,7 +27,7 @@ fn main() {
     let day = args.day;
 
     let solution = match day {
-        1 => day1::solve(),
+        1 => solve("../../data/d1.txt".to_string()),
         _ => Err(format!("Invalid day: {}", day)),
     };
 
