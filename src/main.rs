@@ -27,7 +27,7 @@ fn main() {
     let day = args.day;
 
     let solution = match day {
-        1 => solve("../../data/d1.txt".to_string()),
+        1 => solve("./data/d1.txt".to_string()),
         _ => Err(format!("Invalid day: {}", day)),
     };
 

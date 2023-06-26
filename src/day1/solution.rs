@@ -45,6 +45,7 @@ where
     P: AsRef<Path>,
 {
     let path = filename.as_ref();
+    println!("Opening file {:?}", path);
     if !path.exists() {
         return Err(io::Error::new(
             io::ErrorKind::NotFound,
